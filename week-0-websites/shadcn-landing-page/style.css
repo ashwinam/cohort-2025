@@ -1,9 +1,19 @@
 * {
     background-color: rgb(9, 9, 11);
-    font-family: sans-serif;
+    font-family: 'Geist Sans', sans-serif;
     color: rgb(250, 250, 250);
     margin: 0;
+    
 }
+
+/* geist-sans-latin-400-normal */
+@font-face {
+    font-family: 'Geist Sans';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/geist-sans@latest/latin-400-normal.woff) format('woff');
+  }
 
 .navbar {
     display: flex;
@@ -144,4 +154,75 @@
     font-size: 14px;
     height: 16px;
     width: 16px;
+}
+
+.hero-section {
+    padding: 48px 24px;
+    border-bottom-color: rgb(39, 39, 42);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    align-items: flex-start;
+}
+
+.hero-section > .banner {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.banner:hover {
+    text-decoration: underline;
+}
+
+.banner > svg {
+    height: 16px;
+    width: 16px;
+    margin-left: 4px;
+}
+
+.hero-section > h1 {
+    font-size: 36px;
+    font-weight: bolder;
+    letter-spacing: -1.8px;
+    line-height: 39.6px;
+}
+
+.hero-section > .description {
+    font-size: 18px;
+    max-width: 672px;
+    line-height: 28px;
+    font-weight: 300;
+    color: rgb(222, 220, 220);
+    margin-bottom: 8px;
+}
+
+.get-started-btn {
+    border: none;
+    padding: 8px 12px;
+    background-color: rgb(250, 250, 250);
+    color: rgb(9, 9, 11);
+    border-radius: 6px;
+    font-size: 12px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.get-started-btn:hover {
+    background-color: rgba(250, 250, 250, 0.9);
+}
+
+.block-btn {
+    border: none;
+    font-size: 12px;
+    padding: 8px 12px;
+}
+
+.block-btn:hover {
+    background-color: hsl(240 3.7% 15.9%);
+    border-radius: 0.5rem;
 }
