@@ -57,3 +57,91 @@
     color: hsl(0deg 0% 98% / 80%);
     text-rendering: optimizeLegibility;
 }
+
+.right-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.right-nav > .search_input {
+    border: 1px solid rgb(39, 39, 42);
+    padding: 8px 48px 8px 16px;
+    border-radius: 10px;
+    width: 190px;
+    background-color: rgba(39, 39, 42, 0.5);
+    margin-right: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.right-nav > .search_input:hover {
+    background-color: hsl(240 3.7% 15.9%);
+}
+
+
+.github-icon {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(250, 250, 250);
+    font-size: 14px;
+    font-weight: 500;
+    height: 32px;
+    padding: 1px 6px;
+    text-align: center;
+    width: 32px;
+    cursor: pointer;
+}
+
+.github-icon:hover {
+    background-color: hsl(240 3.7% 15.9%);
+    border-radius: 0.5rem;
+}
+
+.github-icon > a {
+    color: rgb(250, 250, 250);
+    font-size: 14px;
+}
+
+.github-icon > a > svg {
+    color: rgb(250, 250, 250);
+    font-size: 14px;
+    height: 16px;
+    width: 16px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.toggle-dark {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(250, 250, 250);
+    font-size: 14px;
+    font-weight: 500;
+    height: 32px;
+    padding: 1px 6px;
+    text-align: center;
+    width: 32px;
+    cursor: pointer;
+}
+
+.toggle-dark:hover {
+    background-color: hsl(240 3.7% 15.9%);
+    border-radius: 0.5rem;
+}
+
+.toggle-dark > svg {
+    font-size: 14px;
+    height: 16px;
+    width: 16px;
+}
