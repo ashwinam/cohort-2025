@@ -67,3 +67,8 @@ function doOperation(a, b, op){
 
 doOperation(10, 20, multiplication)
 
+setTimeout(() =>{
+    console.log('Ill be logged');
+    
+}, 100); // Run this function after some delayed time
+
