@@ -4,6 +4,25 @@
 */
 
 function isPalindrome(str) {
+  // Lets Normalize the str i.e, removing extra characters
+  let filteredStr = '';
+  for(let i = 0; i < str.length; i++){
+    if ((str[i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= '0' && str[i] <= '9')){
+      filteredStr += str[i].toLowerCase();
+    }
+  } 
+
+  let left = 0;
+  let right = filteredStr.length - 1;
+
+  while (left < right) {
+    if (filteredStr[left] != filteredStr[right]) {
+      return false;
+    } 
+      left++;
+      right--;
+  }
+
   return true;
 }
 
