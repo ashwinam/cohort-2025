@@ -32,7 +32,11 @@
             let value = inputValue.value;
 
             let newLiEl = document.createElement('li');
-            newLiEl.innerHTML = (value + '<button onclick="deleteEl(0)">delete</button>');
+            const buttonEl = document.createElement('button')
+            buttonEl.innerHTML = 'Delete'
+            buttonEl.setAttribute("onclick", "deleteTodo()")
+            newLiEl.innerHTML = value;
+            newLiEl.appendChild(buttonEl);
 
             let olEl = document.querySelector('ol');
 
