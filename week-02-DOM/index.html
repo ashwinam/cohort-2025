@@ -9,8 +9,13 @@
     <h1>ToDo List </h1>
 
     <ol>
-        <li>Wake up @5</li>
-        <li>Deep Work Session</li>
+        <li>Wake up @5 <button onclick="deleteEl(0)">delete</button></li>
+        <li>
+            Deep Work Session
+            <button onclick="deleteEl(1)">
+                delete
+            </button>
+        </li>
     </ol>
 
     <input type="text" name="myVal" id="">
@@ -33,7 +38,17 @@
             2. getElemenetByClassName
             3. getElementsByClassName
         */
-        
+
+        // Updating An element
+        document.title = "DOM | Manipulation"
+
+        document.getElementsByTagName('h1')[0].innerHTML = "ToDoist"
+
+        // Delete an element
+        function deleteEl(elIndex){
+            let liEl = document.querySelectorAll('li')[elIndex];
+            liEl.parentElement.removeChild(liEl);
+        }
         
         
     </script>
