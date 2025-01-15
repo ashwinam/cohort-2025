@@ -25,10 +25,18 @@
         console.log(document);
         let honeEl = document.querySelector('h1');
         console.log(honeEl.innerHTML);
-        
+
+        // Adding Element
         function getInputValue(){
-            let inputValue = document.querySelector('input')
-            console.log(inputValue.value);
+            let inputValue = document.querySelector('input');
+            let value = inputValue.value;
+
+            let newLiEl = document.createElement('li');
+            newLiEl.innerHTML = (value + '<button onclick="deleteEl(0)">delete</button>');
+
+            let olEl = document.querySelector('ol');
+
+            olEl.appendChild(newLiEl);
 
         }
 
@@ -40,9 +48,9 @@
         */
 
         // Updating An element
-        document.title = "DOM | Manipulation"
+        document.title = "DOM | Manipulation";
 
-        document.getElementsByTagName('h1')[0].innerHTML = "ToDoist"
+        document.getElementsByTagName('h1')[0].innerHTML = "ToDoist";
 
         // Delete an element
         function deleteEl(elIndex){
