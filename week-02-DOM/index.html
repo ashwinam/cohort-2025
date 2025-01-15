@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <h1>ToDo List </h1>
+
+    <ol>
+        <li>Wake up @5</li>
+        <li>Deep Work Session</li>
+    </ol>
+
+    <input type="text" name="myVal" id="">
+    <button onclick="getInputValue()">Add todo</button>
+
+    <script>
+        console.log(document);
+        let honeEl = document.querySelector('h1');
+        console.log(honeEl.innerHTML);
+        
+        function getInputValue(){
+            let inputValue = document.querySelector('input')
+            console.log(inputValue.value);
+
+        }
+
+        // Other document methods for reading elements are
+        /*
+            1. getElementById
+            2. getElemenetByClassName
+            3. getElementsByClassName
+        */
+        
+        
+        
+    </script>
+</body>
+</html>
