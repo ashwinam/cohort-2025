@@ -21,6 +21,7 @@
         // state + component = render render the frontend mixture of state and component
         const todos = [];
 
+        // State
         function addTodo(){
             todos.push({
                 id: todos.length + 1,
@@ -30,17 +31,24 @@
             render();
         }
 
+        // Component designing
+        function todoComponent(index, todo) {
+            let liEl = document.createElement('li');
+            let buttonEl = document.createElement('button');
+            buttonEl.textContent = 'Delete';
+            buttonEl.setAttribute('onclick', `deleteTodo(${index})`);
+            liEl.innerHTML = todo.todoDescription;
+            liEl.appendChild(buttonEl);
+            return liEl;
+        }
+
+        // Rendering Designing
         let olEl = document.createElement('ol');
         function render(){
             olEl.innerHTML = "";
             for(let i = 0; i< todos.length; i++){
-                let liEl = document.createElement('li');
-                let buttonEl = document.createElement('button');
-                buttonEl.textContent = 'Delete';
-                buttonEl.setAttribute('onclick', `deleteTodo(${i})`)
-                liEl.innerHTML = todos[i].todoDescription;
-                liEl.appendChild(buttonEl);
-                olEl.appendChild(liEl);
+                let element = todoComponent(i, todos[i])
+                olEl.appendChild(element);
             }
             document.body.appendChild(olEl);
         }
