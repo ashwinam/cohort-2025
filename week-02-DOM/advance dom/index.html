@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | React Initial Idea</title>
+</head>
+<body>
+    <h1>ToDo-ist | Clone</h1>
+    <div>
+        <input type="text" name="" id="add-todo">
+        <button onclick="addTodo()">
+            Add Todo!
+        </button>
+    </div>
+    <script>
+        // The Idea is divide the frontend logix into two parts
+        // state and component
+        // state is the dynamic content for a website i.e, objetc
+        // component is a skeleton structure where we render the state variables
+        // state + component = render render the frontend mixture of state and component
+        const todos = [];
+
+        function addTodo(){
+            todos.push({
+                id: todos.length + 1,
+                todoDescription: document.querySelector('input').value
+            });
+            console.log(todos);
+            render();
+        }
+
+        let olEl = document.createElement('ol');
+        function render(){
+            olEl.innerHTML = "";
+            for(let i = 0; i< todos.length; i++){
+                let liEl = document.createElement('li');
+                let buttonEl = document.createElement('button');
+                buttonEl.textContent = 'Delete';
+                buttonEl.setAttribute('onclick', `deleteTodo(${i})`)
+                liEl.innerHTML = todos[i].todoDescription;
+                liEl.appendChild(buttonEl);
+                olEl.appendChild(liEl);
+            }
+            document.body.appendChild(olEl);
+        }
+
+        function deleteTodo(todoIndex) {
+            todos.splice(todoIndex, 1);
+            render();
+        }
+
+        
+    </script>
+</body>
+</html>
