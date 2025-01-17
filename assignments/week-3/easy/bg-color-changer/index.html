@@ -4,69 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BackGround | Changer</title>
-    <style>
-        body {
-            background-color: bisque;
-        }
-
-        .color-pallet {
-            position: absolute;
-            bottom: 20px;
-            background-color: #fff;
-            border-radius: 50px;
-            padding: 13px 30px;
-            left: 400px;
-            display: flex;
-            justify-content: center;
-            column-gap: 20px;
-            align-items: end;
-            box-shadow: 11px 15px 24px -11px rgba(0,0,0,0.37);
-        }
-
-        button {
-            padding: 4px 15px;
-            border: none;
-            font-weight: bold;
-            font-size: 15px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        #red {
-            background-color: red;
-            color: white;
-        }
-
-        #yellow {
-            background-color: yellow;
-            color: rgb(0, 0, 0);
-        }
-
-        #black {
-            background-color: rgb(0, 0, 0);
-            color: white;
-        }
-
-        #purple {
-            background-color: purple;
-            color: white;
-        }
-
-        #green {
-            background-color: green;
-            color: white;
-        }
-
-        #blue {
-            background-color: blue;
-            color: white;
-        }
-
-        #white {
-            background-color: rgb(198, 165, 165);
-            color: black;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -79,16 +17,6 @@
         <button id="blue">Blue</button>
         <button id="white">Default</button>
     </div>
-    <script>
-        let btnEl = document.querySelectorAll('button');
-        btnEl.forEach(element => {
-            element.setAttribute('onclick', 'changeColor(this)');
-        });
-
-        function changeColor(element){
-            
-            document.body.style.backgroundColor = element.getAttribute('id');
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
