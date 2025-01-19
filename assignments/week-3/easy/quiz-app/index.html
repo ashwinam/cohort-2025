@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizzY | Dev</title>
+</head>
+<body>
+    <h1>QuizzY | DevQuizzY | Dev</h1>
+    <div id="quizzes">
+        <h2>Some sample Question</h2>
+        <div class="answers">
+            <input type="radio" name="input-1" id="java">
+            <label for="java">Option1</label> <br>
+            <input type="radio" name="input-1" id="java">
+            <label for="java">Option2</label> <br>
+            <input type="radio" name="input-1" id="java">
+            <label for="java">Option3</label> <br>
+            <input type="radio" name="input-1" id="java">
+            <label for="java">Option4</label>
+        </div>
+
+        <button type="submit" onclick="nextQuestionOrResult(this)">Submit</button>
+    </div>
+    <script src="data.js"></script>
+    <script>
+        // Lets Divide flow in a state, component, and render way
+        let currentQueIndex = 0;
+        let currentScore = 0;
+
+        if (currentQueIndex < quizData.length){
+                startQuestion();
+            }
+
+        function startQuestion(){
+            let currentQuestion = quizData[currentQueIndex];
+            
+            document.querySelector('h2').innerHTML = currentQuestion.question;
+            const options = ['a', 'b', 'c', 'd'];
+            const answerDiv = document.querySelector('.answers');
+            answerDiv.innerHTML = "";
+            for(let i = 0; i < options.length; i++){
+                const inputEl = document.createElement('input');
+                inputEl.setAttribute('type', 'radio');
+                inputEl.setAttribute('name', 'name-' + currentQueIndex);
+                inputEl.setAttribute('value', currentQuestion[options[i]]);
+                inputEl.id = currentQuestion[options[i]];
+                answerDiv.appendChild(inputEl);
+                const labelEl = document.createElement('label');
+                labelEl.setAttribute('for', currentQuestion[options[i]]);
+                labelEl.innerHTML = currentQuestion[options[i]]
+                answerDiv.appendChild(labelEl);
+                answerDiv.appendChild(document.createElement('br'));
+            }
+        }
+
+        function nextQuestionOrResult(element){
+            console.log(currentQueIndex);
+            if (currentQueIndex < quizData.length){
+                document.getElementsByName(`name-${currentQueIndex}`).forEach(x => {
+                    if(x.checked){
+                        if (x.value === quizData[currentQueIndex][ quizData[currentQueIndex].correct]){
+                            currentScore++;
+                        } else {
+                            if (currentScore > 1){
+                                currentScore--;
+                            };
+                        };
+                        
+                        
+                    }
+                });
+                currentQueIndex++;
+            }
+                if (currentQueIndex < quizData.length){
+                    startQuestion();
+                }else {
+                document.querySelector('#quizzes').innerHTML = "Final Score is " + currentScore + " Out Of 4"
+            }
+                
+             
+        }
+
+        
+        
+    </script>  
+</body>
+</html>
