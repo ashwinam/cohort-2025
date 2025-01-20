@@ -54,32 +54,47 @@
             }
         }
 
-        function nextQuestionOrResult(element){
-            console.log(currentQueIndex);
-            if (currentQueIndex < quizData.length){
-                document.getElementsByName(`name-${currentQueIndex}`).forEach(x => {
-                    if(x.checked){
-                        if (x.value === quizData[currentQueIndex][ quizData[currentQueIndex].correct]){
-                            currentScore++;
-                        } else {
-                            if (currentScore > 1){
-                                currentScore--;
-                            };
-                        };
-                        
-                        
+        function nextQuestionOrResult(element) {
+    console.log(currentQueIndex);
+    
+    if (currentQueIndex < quizData.length) {
+        // Find all radio buttons for the current question
+        const options = document.getElementsByName(`name-${currentQueIndex}`);
+        let answered = false; // Ensure at least one option is selected
+
+        options.forEach(option => {
+            if (option.checked) {
+                answered = true; // Mark as answered
+                // Check if the selected value matches the correct answer
+                if (option.value === quizData[currentQueIndex][quizData[currentQueIndex].correct]) {
+                    currentScore++;
+                } else {
+                    // Decrease score if incorrect, but ensure it doesn't go below 0
+                    if (currentScore > 0) {
+                        currentScore--;
                     }
-                });
-                currentQueIndex++;
+                }
             }
-                if (currentQueIndex < quizData.length){
-                    startQuestion();
-                }else {
-                document.querySelector('#quizzes').innerHTML = "Final Score is " + currentScore + " Out Of 4"
-            }
-                
-             
+        });
+
+        if (!answered) {
+            alert("Please select an answer before proceeding.");
+            return; // Prevent moving to the next question
         }
+
+        // Increment question index
+        currentQueIndex++;
+    }
+
+    // Check if there are more questions
+    if (currentQueIndex < quizData.length) {
+        startQuestion();
+    } else {
+        // Display final score
+        document.querySelector('#quizzes').innerHTML = 
+            "Final Score is " + currentScore + " Out Of " + quizData.length;
+    }
+}
 
         
         
