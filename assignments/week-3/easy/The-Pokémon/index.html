@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <style>
+        body {
+            background-color: #005b43;
+            color: #fff;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .pokemon-container{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 100px;
+        }
+
+        .pokemon-cards{
+            width: 325px;
+            background-color: #f0f0f0;
+            color: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            margin: 20px;
+        }
+
+        .pokemon-cards img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .pokemon-cards .pokemon-detail{
+            padding: 16px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- 
+    First Lets create a raw structure like card 
+    and mimic the information cards
+    then do the js part like getting numbers and categories and based on that show the objects 
+    -->
+
+    <div class="pokemon-container">
+        <div class="pokemon-cards">
+            <img src="peakpx.jpg" alt="">
+            <div class="pokemon-detail">
+                <h3>Name: BalbaSur</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates doloribus assumenda repellat animi iusto repudiandae maxime amet odit esse consectetur. Laboriosam doloremque quidem tempore ullam iure aut exercitationem, quae necessitatibus.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+        <div class="pokemon-cards">
+            <img src="peakpx.jpg" alt="">
+            <div class="pokemon-detail">
+                <h3>Name: BalbaSur</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates doloribus assumenda repellat animi iusto repudiandae maxime amet odit esse consectetur. Laboriosam doloremque quidem tempore ullam iure aut exercitationem, quae necessitatibus.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+        <div class="pokemon-cards">
+            <img src="peakpx.jpg" alt="">
+            <div class="pokemon-detail">
+                <h3>Name: BalbaSur</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates doloribus assumenda repellat animi iusto repudiandae maxime amet odit esse consectetur. Laboriosam doloremque quidem tempore ullam iure aut exercitationem, quae necessitatibus.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+</html>
