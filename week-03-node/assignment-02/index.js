@@ -15,7 +15,7 @@ let program = new Command
 program
     .name('Cli Todo')
     .description('This is a cli based to that you can perform following actions: \n 1. Add ToDo \n 2. Update ToDo \n 3. Delete ToDo \n 4. Done ToDo')
-    .version('0.8.0')
+    .version('0.8.0');
 
 program.command('add')
     .description('Take an todo')
@@ -32,12 +32,12 @@ program.command('add')
         content = JSON.parse(content);
         content.push(todoObject);
         fs.writeFileSync('todos.json', JSON.stringify(content));
-    })
+    });
 
 program.command('update')
     .description('Take a existing todo and new todo')
-    .argument('<todo>', 'Pass a previous existing ToDo')
-    .argument('<todo>', 'Pass a new ToDo')
+    .argument('<prevTodo>', 'Pass a previous existing ToDo')
+    .argument('<newTodo>', 'Pass a new ToDo')
     .action((prevTodo, newTodo)=>{
         let content = fs.readFileSync('todos.json', 'utf-8');
         content = JSON.parse(content);
@@ -48,6 +48,20 @@ program.command('update')
 
         existTodo.todo = newTodo;
         fs.writeFileSync('todos.json', JSON.stringify(content));
+    });
+
+program.command('delete')
+    .description('Take a todo and delete that particular todo from file')
+    .argument('<todo>', 'pass a todo for deleting todo')
+    .action((todo)=>{
+        let content = fs.readFileSync('todos.json', 'utf-8');
+        content = JSON.parse(content);
+
+        let filteredArray = content.filter((x)=>{
+            return x.todo !== todo;
+        })
+
+        fs.writeFileSync('todos.json', JSON.stringify(filteredArray));
     })
 
 program.parse();
