@@ -64,4 +64,20 @@ program.command('delete')
         fs.writeFileSync('todos.json', JSON.stringify(filteredArray));
     })
 
+program.command('done')
+    .description('Take a todo and mark that as done')
+    .argument('<todo>', 'pass a todo for deleting todo')
+    .action((todo)=>{
+        let content = fs.readFileSync('todos.json', 'utf-8');
+        content = JSON.parse(content);
+
+        let findAnTodo = content.find((x)=>{
+            return x.todo === todo;
+        })
+
+        findAnTodo.is_done = true;
+
+        fs.writeFileSync('todos.json', JSON.stringify(content));
+    })
+
 program.parse();
