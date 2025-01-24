@@ -62,7 +62,7 @@ app.put('/', function(req, res){
 })
 
 app.delete('/', function(req, res){
-    kidneys = user.kidneys.filter(x => x.healthy)
+    kidneys = user.kidneys.filter(x => x.healthy);
 
     user.kidneys = kidneys;
 
