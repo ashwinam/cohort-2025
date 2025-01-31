@@ -8,7 +8,7 @@ const router = express.Router()
 Authentication flow for todo app
 File Based Authentication system for todo app
 
-1. SignUp: if user signup it create a new object and push it to the file user.json file
+1. SignUp: if user signup it create a new object and push it to the file user.json file -> done
 
 2. SignIn: It checks user email address  from the user json file 
 if not found throws validation error: No user available with this email, please reverify your email or create new user
@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 })
 
 app.use(checkDbFile);
-app.use(isUserExist);
+app.use('/signup', isUserExist);
 
 app.post('/signup', function(req, res){
     const email = req.body.email;
@@ -70,7 +70,25 @@ app.post('/signup', function(req, res){
 });
 
 app.post('/signin', function(req, res){
-    res.send('User Sign in page, loading...')
+    const email = req.body.email;
+    const password = req.body.password;
+
+    let content = fs.readFileSync('./db/users.json', 'utf-8')
+
+    let userList = JSON.parse(content);
+
+    let user = userList.find(x => x.email === email)
+    if (user){
+        if (user.password === password){
+            res.json({'msg':'Logged In successfull...'})
+        } else {
+            res.json({'msg': 'email and password did not match'})
+        }
+        
+    }else {
+        res.json({'msg': 'email and password did not match'})
+    }
+
 });
 
 app.listen(3000);
