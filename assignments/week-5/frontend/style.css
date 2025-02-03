@@ -1,1 +1,54 @@
-  /* start from here */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.authentication {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, rgba(76,92,173,1) 0%, rgba(29,38,21,1) 100%);
+}
+
+.sign-up {
+  /* border: 1px solid red; */
+  border: none;
+  padding: 20px;
+  background: rgb(76,92,173);
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+/* .block-input {
+  display: block;
+} */
+
+.sign-up > h2 {
+  font-size: 30px;
+  color: rgb(27, 41, 113);
+  margin: 0 0 15px;
+}
+
+.username {
+  font-size: 19px;
+  margin: 0 0 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.username-label {
+  margin: 0 0 5px;
+}
+
+.password {
+  font-size: 19px;
+  margin: 0 0 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.password-label {
+  margin: 0 0 5px;
+}
