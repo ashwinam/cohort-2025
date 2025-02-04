@@ -9,14 +9,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle, rgba(76,92,173,1) 0%, rgba(29,38,21,1) 100%);
+  background: url(assets/bg-img/5197210.jpg);
 }
 
 .sign-up {
   /* border: 1px solid red; */
   border: none;
   padding: 20px;
-  background: rgb(76,92,173);
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 }
@@ -24,7 +26,7 @@
 
 .sign-up > h2 {
   font-size: 30px;
-  color: rgb(27, 41, 113);
+  color: rgb(255, 255, 255);
   margin: 0 0 15px;
 }
 
@@ -36,7 +38,7 @@
 }
 
 .username-label {
-  color: rgb(27, 41, 113);
+  color: rgb(255, 255, 255);
   margin: 0 0 7px;
 }
 
@@ -59,7 +61,7 @@
 }
 
 .password-label {
-  color: rgb(27, 41, 113);
+  color: rgb(255, 255, 255);
   margin: 0 0 7px;
 }
 
@@ -71,13 +73,22 @@
   font-weight: bold;
   border-radius: 8px;
   color: white;
-  background-color: rgb(27, 41, 113);
+  background-color: rgba(27, 41, 113);
   cursor: pointer;
   margin: 10px 0;
+  transition: background-color 0.1s;
+}
+
+.sign-up-btn:hover {
+  background-color: rgba(27, 41, 113, 0.7);
+}
+
+.sign-up-btn:active{
+  background-color: rgba(27, 41, 113);
 }
 
 .redirect-link {
-  color: rgb(14, 25, 82);
+  color: rgb(255, 255, 255);
   font-size: 17px;
   font-weight: 500;
 }
@@ -86,4 +97,5 @@
   text-decoration: none;
   color: rgb(136, 226, 47);
   font-size: 18px;
+  font-weight: bold;
 }
