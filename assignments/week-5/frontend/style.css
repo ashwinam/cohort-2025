@@ -21,9 +21,6 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 }
 
-/* .block-input {
-  display: block;
-} */
 
 .sign-up > h2 {
   font-size: 30px;
@@ -39,7 +36,19 @@
 }
 
 .username-label {
-  margin: 0 0 5px;
+  color: rgb(27, 41, 113);
+  margin: 0 0 7px;
+}
+
+.input-box{
+  border: none;
+  padding: 14px 20px;
+  width: 300px;
+  border-radius: 7px;
+}
+
+.input-box::placeholder {
+  font-size: 16px;
 }
 
 .password {
@@ -50,5 +59,31 @@
 }
 
 .password-label {
-  margin: 0 0 5px;
+  color: rgb(27, 41, 113);
+  margin: 0 0 7px;
+}
+
+.sign-up-btn {
+  border: none;
+  padding: 15px 40px;
+  width: 340px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 8px;
+  color: white;
+  background-color: rgb(27, 41, 113);
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.redirect-link {
+  color: rgb(14, 25, 82);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.redirect-link > span > a{
+  text-decoration: none;
+  color: rgb(136, 226, 47);
+  font-size: 18px;
 }
