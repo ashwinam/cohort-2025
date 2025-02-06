@@ -51,4 +51,23 @@ app.post('/signin', (req, res) => {
     }
 })
 
+app.post('/me', (req, res)=>{
+    const token = req.headers.authorization;
+    let foundUser = users.find(u => u.token === token);
+
+    console.log(token);
+
+    if (!token){
+        res.json({message: 'not authenticated'})
+        return
+    }
+    
+
+    if (foundUser) {
+        res.json({username: foundUser.username, password: foundUser.password})
+    } else {
+        res.json({message: 'user is not authenticated'})
+    }
+})
+
 app.listen(3000);
