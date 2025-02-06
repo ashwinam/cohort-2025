@@ -10,6 +10,11 @@ app.post('/signup', (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
 
+    if (users.findIndex(u => u.username === username) != -1) {
+        res.json({message:'user is already exists'})
+        return
+    }
+
     users.push({username:username, password:password})
 
     console.log(users);
