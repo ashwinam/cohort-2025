@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Auth FE</title>
+    </head>
+    <body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+        <script>
+            async function signup(){
+                let username = document.getElementById('signup-username').value;
+                let password = document.getElementById('signup-password').value;
+
+                console.log(username, password);
+
+                let response = await axios.post('http://localhost:3000/signup', {
+                    username: username, password: password
+                })
+               alert(response.data.message);
+                
+            }
+
+           async function signin(){
+                let username = document.getElementById('signup-username').value;
+                let password = document.getElementById('signup-password').value;
+
+                let response = await axios.post('http://localhost:3000/signin', {
+                    username: username,
+                    password: password
+                })
+
+                localStorage.setItem('token', response.data.token);
+
+                alert(response.data.message)
+            }
+
+            async function getLoggedInUserInformation(){
+                let token = localStorage.getItem('token');
+
+                console.log(token);
+
+                if (!token){
+                    alert('Please Log in first.')
+                    return
+                }
+                
+
+                let response = await axios.post('http://localhost:3000/me', {}, {
+                    headers: {
+                        token: token
+                    }
+                })
+
+                document.getElementById('information').innerHTML = '<p>Username: ' + response.data.username + ' Password: ' + response.data.password;
+            }
+
+            function logout(){
+                localStorage.removeItem('token');
+                alert('User log out successfully.')
+            }
+
+            getLoggedInUserInformation();
+        </script>
+        <div id="signup-section">
+            <input type="text" name="" id="signup-username" placeholder="type your username">
+            <input type="password" name="" id="signup-password" placeholder="type your password">
+            <button onclick="signup()">Signup</button>
+        </div>
+        <div id="signin-section">
+            <input type="text" name="" id="signin-username" placeholder="type your username">
+            <input type="password" name="" id="signin-password" placeholder="type your password">
+            <button onclick="signin()">Signin</button>
+        </div>
+        <h2>User Information</h2>
+        <div id="information"></div>
+        <button onclick="logout()">Logout</button>
+    </body>
+</html>
