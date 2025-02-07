@@ -20,6 +20,28 @@ let users = [];
 
 const JWT_SECRET = "someRandomSecret";
 
+// Can you try creating a middleware called auth that verifies if a user is logged in and ends the request early if the user isn’t logged in?
+
+function auth(req, res, next){
+    const token = req.headers.token;
+    let userDetails = jwt.verify(token, JWT_SECRET);
+
+    console.log(userDetails);
+    
+    let username = userDetails.username;
+
+    console.log(token);
+
+    let foundUser = users.find(u => u.username === username);
+
+    if (foundUser){
+        req.user = foundUser;
+        next();
+    } else {
+        res.json({message: 'user is not logged in'})
+    }
+}
+
 app.post('/signup', (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
@@ -54,29 +76,10 @@ app.post('/signin', (req, res) => {
     }
 })
 
-app.post('/me', (req, res)=>{
-    const token = req.headers.authorization;
-    let userDetails = jwt.verify(token, JWT_SECRET);
-
-    console.log(userDetails);
+app.post('/me', auth, (req, res)=>{
     
-    let username = userDetails.username;
-
-    console.log(token);
-
-    let foundUser = users.find(u => u.username === username);
-
-    if (!token){
-        res.json({message: 'not authenticated'})
-        return
-    }
-    
-
-    if (foundUser) {
-        res.json({username: foundUser.username, password: foundUser.password})
-    } else {
-        res.json({message: 'user is not authenticated'})
-    }
+    let user = req.user;
+    res.json({username: user.username, password: user.password})
 })
 
 app.listen(3000);
