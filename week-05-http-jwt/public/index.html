@@ -5,6 +5,22 @@
     </head>
     <body>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+        
+        <div id="signup-section">
+            <input type="text" name="" id="signup-username" placeholder="type your username">
+            <input type="password" name="" id="signup-password" placeholder="type your password">
+            <button onclick="signup()">Signup</button>
+        </div>
+        <div id="signin-section">
+            <input type="text" name="" id="signin-username" placeholder="type your username">
+            <input type="password" name="" id="signin-password" placeholder="type your password">
+            <button onclick="signin()">Signin</button>
+        </div>
+        <div id="user-info">
+            <h2>User Information</h2>
+            <div id="information"></div>
+            <button onclick="logout()">Logout</button>
+        </div>
         <script>
             async function signup(){
                 let username = document.getElementById('signup-username').value;
@@ -36,21 +52,18 @@
             async function getLoggedInUserInformation(){
                 let token = localStorage.getItem('token');
 
-                console.log(token);
-
                 if (!token){
-                    alert('Please Log in first.')
-                    return
-                }
-                
-
-                let response = await axios.post('http://localhost:3000/me', {}, {
+                    document.getElementById('user-info').innerHTML = "";
+                } else {
+                    let response = await axios.post('http://localhost:3000/me', {}, {
                     headers: {
                         token: token
                     }
                 })
-
                 document.getElementById('information').innerHTML = '<p>Username: ' + response.data.username + ' Password: ' + response.data.password;
+                document.getElementById('signup-section').innerHTML="";
+                document.getElementById('signin-section').innerHTML="";
+                }
             }
 
             function logout(){
@@ -60,18 +73,5 @@
 
             getLoggedInUserInformation();
         </script>
-        <div id="signup-section">
-            <input type="text" name="" id="signup-username" placeholder="type your username">
-            <input type="password" name="" id="signup-password" placeholder="type your password">
-            <button onclick="signup()">Signup</button>
-        </div>
-        <div id="signin-section">
-            <input type="text" name="" id="signin-username" placeholder="type your username">
-            <input type="password" name="" id="signin-password" placeholder="type your password">
-            <button onclick="signin()">Signin</button>
-        </div>
-        <h2>User Information</h2>
-        <div id="information"></div>
-        <button onclick="logout()">Logout</button>
     </body>
 </html>

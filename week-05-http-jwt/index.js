@@ -26,20 +26,23 @@ const JWT_SECRET = "someRandomSecret";
 
 function auth(req, res, next){
     const token = req.headers.token;
-    let userDetails = jwt.verify(token, JWT_SECRET);
+    if (token){
 
-    console.log(userDetails);
+        let userDetails = jwt.verify(token, JWT_SECRET);
     
-    let username = userDetails.username;
-
-    console.log(token);
-
-    let foundUser = users.find(u => u.username === username);
-
-    if (foundUser){
-        req.user = foundUser;
-        next();
-    } else {
+        console.log(userDetails);
+        
+        let username = userDetails.username;
+    
+        console.log(token);
+    
+        let foundUser = users.find(u => u.username === username);
+    
+        if (foundUser){
+            req.user = foundUser;
+            next();
+        }
+    }else {
         res.json({message: 'user is not logged in'})
     }
 }
