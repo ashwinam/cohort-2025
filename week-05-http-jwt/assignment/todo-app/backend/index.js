@@ -172,5 +172,34 @@ app.put('/todos/:id', (req, res)=>{
     })
 })
 
+app.delete('/todos/:id', (req, res)=>{
+    let token = req.headers.token;
+    let todo_id = req.params.id;
+
+    if (!token){
+        res.status(401)
+        return res.json({
+            message: 'Please log in first.'
+        })
+    }
+
+    let userDetail = jwt.verify(token, JWT_SECRET);
+
+    // read the todos DB
+    let todoData = fs.readFileSync(__dirname + '/DB/todos.json', 'utf-8');
+
+    let todoContent = JSON.parse(todoData);
+
+    let foundTodo = todoContent.findIndex(u => u.id === parseInt(todo_id) && u.username === userDetail.username);
+
+    todoContent.splice(foundTodo, 1);
+
+    fs.writeFileSync(__dirname + '/DB/todos.json', JSON.stringify(todoContent));
+
+    return res.json({
+        message: 'todo deleted successfully.'
+    })
+})
+
 
 app.listen(3000);
