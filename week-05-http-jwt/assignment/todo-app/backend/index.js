@@ -2,10 +2,10 @@
 ToDo Backend:
 1. DBs are the filebased where we are storing the user details and todos
     i. create db folder and inside add two json files 
-        1. users
-        2. todos
-2. Create a signup and signin handlers
-3. In signin handler add a JWT token functionality.
+        1. users -> done
+        2. todos -> done
+2. Create a signup and signin handlers -> done
+3. In signin handler add a JWT token functionality. -> done
 4. ToDos Crud functionality based on users
 5. Add Mark then as done functionality todos
 */
@@ -80,6 +80,34 @@ app.post('/signin', (req, res) =>{
             message: 'email and password did not match'
         })
     }
+})
+
+// todos enpoints
+
+// {id, todo, username, is_completed}
+
+app.get('/todos', (req, res)=>{
+    let token = req.headers.token;
+
+    if (!token){
+        res.status(401)
+        return res.json({
+            message: 'Please log in first.'
+        })
+    }
+
+    let userDetail = jwt.verify(token, JWT_SECRET);
+
+    // read the todos DB
+    let todoData = fs.readFileSync(__dirname + '/DB/todos.json', 'utf-8');
+
+    let todoContent = JSON.parse(todoData);
+
+    let userToDos = todoContent.filter(u => u.username === userDetail.username)
+
+    res.json({
+        todos: userToDos
+    })
 })
 
 
