@@ -110,5 +110,37 @@ app.get('/todos', (req, res)=>{
     })
 })
 
+app.post('/todos', (req, res)=>{
+    let token = req.headers.token;
+    let todo = req.body.todo;
+
+    if (!token){
+        res.status(401)
+        return res.json({
+            message: 'Please log in first.'
+        })
+    }
+
+    let userDetail = jwt.verify(token, JWT_SECRET);
+
+    // read the todos DB
+    let todoData = fs.readFileSync(__dirname + '/DB/todos.json', 'utf-8');
+
+    let todoContent = JSON.parse(todoData);
+
+    todoContent.push({
+        id: todoContent.length + 1,
+        todo: todo,
+        is_completed: false,
+        username: userDetail.username
+    })
+
+    fs.writeFileSync(__dirname + '/DB/todos.json', JSON.stringify(todoContent));
+
+    return res.json({
+        message: 'todo added successfully.'
+    })
+})
+
 
 app.listen(3000);
