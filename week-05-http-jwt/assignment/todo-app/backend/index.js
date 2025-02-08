@@ -13,13 +13,45 @@ ToDo Backend:
 const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
 
 const app = express();
 
 app.use(express.json());
 
-app.get('/', (req, res) =>{
-    res.send('Hello, World!')
+// User Authentication system
+app.post('/signup', (req, res) =>{
+    let username = req.body.username;
+    let password = req.body.password;
+
+    // first read the DB
+    let usersData = fs.readFileSync(__dirname + '/DB/users.json');
+
+    let userContent = JSON.parse(usersData);
+
+    // checks on existing username
+    let foundUser = userContent.findIndex(u => u.username === username);
+
+    if (foundUser != -1){
+        res.json({
+            message: 'User is already exists.'
+        })
+        return
+    }
+
+    let user = {
+        username: username,
+        password: password
+    }
+
+    userContent.push(user)
+
+    fs.writeFileSync(__dirname + '/DB/users.json', JSON.stringify(userContent))
+
+    res.json({
+        message: 'User created successfully.'
+    })
 })
+
 
 app.listen(3000);
