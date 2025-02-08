@@ -19,6 +19,8 @@ const app = express();
 
 app.use(express.json());
 
+JWT_SECRET = 'dfgndfndfg'
+
 // User Authentication system
 app.post('/signup', (req, res) =>{
     let username = req.body.username;
@@ -51,6 +53,33 @@ app.post('/signup', (req, res) =>{
     res.json({
         message: 'User created successfully.'
     })
+})
+
+app.post('/signin', (req, res) =>{
+    let username = req.body.username;
+    let password = req.body.password;
+
+    // read the users data
+    let usersData = fs.readFileSync(__dirname + '/DB/users.json');
+
+    let userContent = JSON.parse(usersData);
+
+    let foundUser = userContent.find(u => u.username === username);
+
+    if (foundUser){
+        let token = jwt.sign({
+            username: foundUser.username
+        }, JWT_SECRET)
+
+        return res.json({
+            message: 'Loggedin Successfully',
+            token: token
+        })
+    } else {
+        return res.json({
+            message: 'email and password did not match'
+        })
+    }
 })
 
 
