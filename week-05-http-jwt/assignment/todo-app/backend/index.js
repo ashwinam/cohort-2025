@@ -6,7 +6,7 @@ ToDo Backend:
         2. todos -> done
 2. Create a signup and signin handlers -> done
 3. In signin handler add a JWT token functionality. -> done
-4. ToDos Crud functionality based on users
+4. ToDos Crud functionality based on users -> done
 5. Add Mark then as done functionality todos
 */
 
@@ -198,6 +198,35 @@ app.delete('/todos/:id', (req, res)=>{
 
     return res.json({
         message: 'todo deleted successfully.'
+    })
+})
+
+app.put('/todos/:id/complete', (req, res)=>{
+    let token = req.headers.token;
+    let todo_id = req.params.id;
+
+    if (!token){
+        res.status(401)
+        return res.json({
+            message: 'Please log in first.'
+        })
+    }
+
+    let userDetail = jwt.verify(token, JWT_SECRET);
+
+    // read the todos DB
+    let todoData = fs.readFileSync(__dirname + '/DB/todos.json', 'utf-8');
+
+    let todoContent = JSON.parse(todoData);
+
+    let foundTodo = todoContent.find(u => u.id === parseInt(todo_id) && u.username === userDetail.username);
+
+    foundTodo.is_complete = true;
+
+    fs.writeFileSync(__dirname + '/DB/todos.json', JSON.stringify(todoContent));
+
+    return res.json({
+        message: 'todo mark as completed successfully.'
     })
 })
 
