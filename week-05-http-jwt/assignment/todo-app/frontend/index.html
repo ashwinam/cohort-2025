@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taskify Frontend</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="authentication">
+        <div class="sign-up">
+            <h2>SignUp</h2>
+            <div class="username">
+                <label for="username" class="username-label">Username: </label>
+                <input type="text" placeholder="Enter your email address" class="input-box">
+            </div>
+            <div class="password">
+                <label for="password" class="password-label">Password: </label>
+                <input type="password"  placeholder="Enter your passwords" class="input-box">
+            </div>
+            <button class="sign-up-btn" onclick="signup()">Signup</button>
+            <p class="redirect-link">Already have an account? <span><button id="form-toggler" value="signup" onclick="formToggler(this)">Sign In</button></span></p>
+        </div>
+        <!-- <div class="sign-up">
+            <h1>Your ToDo List</h1>
+            <div class="todo-div">
+                <input type="text" placeholder="add todo" class="todo-input-box">
+
+                <button class="todo-btn">Add Todo</button>
+
+                <div class="todo-block">1. Go to gym.</div>
+                <div class="todo-block">2. Go for shopping</div>
+
+                <div class="user-info">Logged in successfully. <span><a href="#">Logout</a></span></div>
+            </div>
+        </div> -->
+    </div>
+    
+    <script src="./script.js"></script>     
+</body>
+</html>
