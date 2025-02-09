@@ -21,19 +21,20 @@
                 <button type="button" class="sign-up-btn" onclick="event.preventDefault(); signup()">Signup</button>
             <p class="redirect-link">Already have an account? <span><span id="form-toggler" value="signup" onclick="formToggler(this)">Sign In</span></span></p>
         </div>
-        <!-- <div class="sign-up">
+        <div class="todos-view">
             <h1>Your ToDo List</h1>
             <div class="todo-div">
                 <input type="text" placeholder="add todo" class="todo-input-box">
 
-                <button class="todo-btn">Add Todo</button>
+                <button type="button" class="todo-btn" onclick="addTodo()">Add Todo</button>
+                <div class="todo-items">
+                    <div class="todo-block">1. Go to gym.</div>
+                    <div class="todo-block">2. Go for shopping</div>
+                </div>
 
-                <div class="todo-block">1. Go to gym.</div>
-                <div class="todo-block">2. Go for shopping</div>
-
-                <div class="user-info">Logged in successfully. <span><a href="#">Logout</a></span></div>
+                <div class="user-info">Logged in successfully. <span onclick="logout()">Logout</span></div>
             </div>
-        </div> -->
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
     <script src="./script.js"></script>     

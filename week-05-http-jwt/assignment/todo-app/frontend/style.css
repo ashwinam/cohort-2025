@@ -12,7 +12,7 @@
     background: url(assets/bg-img/5197210.jpg);
   }
   
-  .sign-up {
+  .sign-up, .todos-view{
     /* border: 1px solid red; */
     border: none;
     padding: 20px;
@@ -164,10 +164,11 @@
     margin-top: 10px;
   }
   
-  .user-info > span > a{
+  .user-info > span {
     text-decoration: underline;
     color: rgb(255, 255, 255);
     font-weight: bold;
+    cursor: pointer;
   }
 
   #form-toggler{
