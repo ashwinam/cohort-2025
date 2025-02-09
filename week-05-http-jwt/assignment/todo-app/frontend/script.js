@@ -1,9 +1,31 @@
-function signup(){
-    alert('i am clicked')
+async function signup(){
+    let nodes = document.querySelectorAll('.input-box');
+    let username = nodes[0].value;
+    let password = nodes[1].value;
+
+    let response = await axios.post('http://localhost:3000/signup', {
+            username: username,
+            password: password
+    })
+
+    alert(response.data.message);
 }
 
-function signin(){
-    alert('i am clicked')
+async function signin(){
+    let nodes = document.querySelectorAll('.input-box');
+    let username = nodes[0].value;
+    let password = nodes[1].value;
+
+    let response = await axios.post('http://localhost:3000/signin', {
+        username: username,
+        password: password
+    })
+
+    let token = response.data.token;
+
+    localStorage.setItem('token', token);
+
+    alert(response.data.message);
 }
 
 function formToggler(element){

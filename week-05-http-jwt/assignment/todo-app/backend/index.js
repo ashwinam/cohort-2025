@@ -16,7 +16,7 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
 JWT_SECRET = 'dfgndfndfg'
@@ -25,6 +25,13 @@ JWT_SECRET = 'dfgndfndfg'
 app.post('/signup', (req, res) =>{
     let username = req.body.username;
     let password = req.body.password;
+
+    console.log(req.body);
+    
+
+    if (!username || !password){
+        return res.json({message: 'username and password is need to be available.'})
+    }
 
     // first read the DB
     let usersData = fs.readFileSync(__dirname + '/DB/users.json');
@@ -50,7 +57,7 @@ app.post('/signup', (req, res) =>{
 
     fs.writeFileSync(__dirname + '/DB/users.json', JSON.stringify(userContent))
 
-    res.json({
+    return res.json({
         message: 'User created successfully.'
     })
 })

@@ -10,16 +10,16 @@
     <div class="authentication">
         <div class="sign-up">
             <h2>SignUp</h2>
-            <div class="username">
-                <label for="username" class="username-label">Username: </label>
-                <input type="text" placeholder="Enter your email address" class="input-box">
-            </div>
-            <div class="password">
-                <label for="password" class="password-label">Password: </label>
-                <input type="password"  placeholder="Enter your passwords" class="input-box">
-            </div>
-            <button class="sign-up-btn" onclick="signup()">Signup</button>
-            <p class="redirect-link">Already have an account? <span><button id="form-toggler" value="signup" onclick="formToggler(this)">Sign In</button></span></p>
+                <div class="username">
+                    <label for="username" class="username-label">Username: </label>
+                    <input type="text" placeholder="Enter your email address" class="input-box">
+                </div>
+                <div class="password">
+                    <label for="password" class="password-label">Password: </label>
+                    <input type="password"  placeholder="Enter your passwords" class="input-box">
+                </div>
+                <button type="button" class="sign-up-btn" onclick="event.preventDefault(); signup()">Signup</button>
+            <p class="redirect-link">Already have an account? <span><span id="form-toggler" value="signup" onclick="formToggler(this)">Sign In</span></span></p>
         </div>
         <!-- <div class="sign-up">
             <h1>Your ToDo List</h1>
@@ -35,7 +35,7 @@
             </div>
         </div> -->
     </div>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
     <script src="./script.js"></script>     
 </body>
 </html>
