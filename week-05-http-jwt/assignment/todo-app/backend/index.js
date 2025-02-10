@@ -117,6 +117,33 @@ app.get('/todos', (req, res)=>{
     })
 })
 
+app.get('/todos/:id', (req, res)=>{
+    let todoId = req.params.id
+    let token = req.headers.token;
+
+    if (!token){
+        res.status(401)
+        return res.json({
+            message: 'Please log in first.'
+        })
+    }
+
+    let userDetail = jwt.verify(token, JWT_SECRET);
+
+    // read the todos DB
+    let todoData = fs.readFileSync(__dirname + '/DB/todos.json', 'utf-8');
+
+    let todoContent = JSON.parse(todoData);
+
+    let userToDos = todoContent.filter(u => u.username === userDetail.username)
+
+    let todo = userToDos.find(t => t.id === parseInt(todoId))
+
+    res.json({
+        todo: todo
+    })
+})
+
 app.post('/todos', (req, res)=>{
     let token = req.headers.token;
     let todo = req.body.todo;
