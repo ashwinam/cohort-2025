@@ -136,7 +136,7 @@ app.post('/todos', (req, res)=>{
     let todoContent = JSON.parse(todoData);
 
     todoContent.push({
-        id: todoContent.length + 1,
+        id: todoContent[todoContent.length - 1].id + 1,
         todo: todo,
         is_completed: false,
         username: userDetail.username
