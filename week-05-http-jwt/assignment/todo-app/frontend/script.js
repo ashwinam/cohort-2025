@@ -81,7 +81,9 @@ async function conditionalRendering(){
             for (let i = 0; i < todos.length; i++){
                 let divEl = document.createElement('div');
                 divEl.className = 'todo-block';
-                divEl.innerHTML = `${i + 1}. ${todos[i].todo}`;
+                divEl.innerHTML = `${i + 1}. ${todos[i].todo}<i class="material-icons edit-icon" onclick="editTodo()">&#xe3c9;</i><i class="material-icons delete-icon" onclick="deleteTodo(this)">delete_forever</i>
+                    <i class="material-icons check-icon" onclick="markDoneTodo()">&#xe86c;</i>`;
+                divEl.setAttribute('todoId', todos[i].id)
                 document.querySelector('.todo-items').appendChild(divEl);
                 
             }
@@ -104,6 +106,18 @@ async function addTodo(){
 
     console.log(response);
     
+}
+
+async function deleteTodo(element){
+    let token = localStorage.getItem('token');
+    let todoId = element.parentElement.getAttribute('todoid');
+
+    let response = await axios.delete('http://localhost:3000/todos/' + todoId, {
+        headers: {token: token}
+    })
+
+    alert(response.data.message)
+   
 }
 
 conditionalRendering();

@@ -190,7 +190,7 @@
 }
 
 .delete-icon{
-  color: red;
+  color: rgb(253, 39, 39);
   position: absolute;
   cursor: pointer;
   right: 8px;
