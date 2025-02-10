@@ -81,7 +81,7 @@ async function conditionalRendering(){
             for (let i = 0; i < todos.length; i++){
                 let divEl = document.createElement('div');
                 divEl.className = 'todo-block';
-                divEl.innerHTML = `${i + 1}. ${todos[i].todo}<i class="material-icons edit-icon" onclick="editTodo()">&#xe3c9;</i><i class="material-icons delete-icon" onclick="deleteTodo(this)">delete_forever</i>
+                divEl.innerHTML = `${i + 1}. ${todos[i].todo}<i class="material-icons edit-icon" onclick="editTodo(this)">&#xe3c9;</i><i class="material-icons delete-icon" onclick="deleteTodo(this)">delete_forever</i>
                     <i class="material-icons check-icon" onclick="markDoneTodo()">&#xe86c;</i>`;
                 divEl.setAttribute('todoId', todos[i].id)
                 document.querySelector('.todo-items').appendChild(divEl);
@@ -118,6 +118,45 @@ async function deleteTodo(element){
 
     alert(response.data.message)
    
+}
+
+async function editTodo(element){
+    let token = localStorage.getItem('token')
+    let todoId = element.parentElement.getAttribute('todoid');
+
+    let response = await axios.get('http://localhost:3000/todos/' + todoId, {
+        headers: {token: token}
+    })
+
+    let todoObj = response.data.todo
+    
+    let inputBox = document.getElementsByClassName('todo-input-box');
+
+    inputBox[0].value = todoObj.todo
+
+    let btnEl = document.querySelector('.todo-btn')
+
+    btnEl.innerHTML = 'Update Todo'
+
+    btnEl.setAttribute('onclick', 'updateTodo(this)')
+
+    btnEl.setAttribute('todoId', todoObj.id)
+    
+}
+
+async function updateTodo(element){
+    let token = localStorage.getItem('token')
+    let todoId = element.getAttribute('todoid')
+    let newTodo = document.querySelector('.todo-input-box').value
+
+    let response = await axios.put('http://localhost:3000/todos/' + todoId, {
+        todo: newTodo
+    }, {
+        headers: {token: token}
+    })
+
+    alert(response.data.message)
+    
 }
 
 conditionalRendering();
