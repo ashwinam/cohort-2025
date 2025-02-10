@@ -156,6 +156,7 @@
     border-radius: 7px;
     font-size: 18px;
     font-weight: 500;
+    position: relative;
   }
   
   .user-info{
@@ -180,3 +181,24 @@
     font-weight: 500;
     color: white;
   }
+
+.edit-icon {
+  color: white;
+  position: absolute;
+  right: 35px;
+  cursor: pointer;
+}
+
+.delete-icon{
+  color: red;
+  position: absolute;
+  cursor: pointer;
+  right: 8px;
+}
+
+.check-icon{
+  color: rgb(232, 61, 184);
+  position: absolute;
+  cursor: pointer;
+  right: 70px;
+}
