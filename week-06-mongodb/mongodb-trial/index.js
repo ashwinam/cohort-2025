@@ -3,8 +3,9 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const {UserModel, TodoModel} = require('./db/schemas')
 const auth = require('./middlewares/auth')
+const bcrypt = require('bcrypt');
 
-mongoose.connect("mongodb+srv://tryashwinm:0xSb3cA3kUTUm5iy@cluster0.0uhqa.mongodb.net/todos-db")
+mongoose.connect("mongodb+srv://tryashwinm:sUNSOXRD7alPMVWz@cluster0.0uhqa.mongodb.net/todos-db")
 
 const app = express();
 
@@ -17,9 +18,11 @@ app.post('/signup', async (req, res)=>{
     let password = req.body.password;
     let name = req.body.name;
 
+    let hashedPassword = await bcrypt.hash(password, 5);
+
     await UserModel.create({
         email: email,
-        password: password,
+        password: hashedPassword,
         name: name
     })
 
@@ -33,11 +36,15 @@ app.post('/signin', async (req, res)=>{
     const password = req.body.password;
 
     let user = await UserModel.findOne({
-        email,
-        password
+        email: email
     })
 
-    if(user){
+    let correctedPassword = await bcrypt.compare(password, user.password);
+
+    console.log(correctedPassword);
+    
+
+    if(user && correctedPassword){
         let token = jwt.sign({
             id: user._id.toString()
         }, JWT_SECRET)
