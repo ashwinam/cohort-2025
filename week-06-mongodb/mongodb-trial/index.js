@@ -35,27 +35,30 @@ app.post('/signin', async (req, res)=>{
     const email = req.body.email;
     const password = req.body.password;
 
-    let user = await UserModel.findOne({
-        email: email
-    })
-
-    let correctedPassword = await bcrypt.compare(password, user.password);
-
-    console.log(correctedPassword);
-    
-
-    if(user && correctedPassword){
-        let token = jwt.sign({
-            id: user._id.toString()
-        }, JWT_SECRET)
-
-        res.json({
-            token
+    try {
+        let user = await UserModel.findOne({
+            email: email
         })
-    }else {
-        res.status(401).json({
-            message: "Incorrect Credentials."
-        })
+
+        let correctedPassword = await bcrypt.compare(password, user.password);
+        
+
+        if(user && correctedPassword){
+            let token = jwt.sign({
+                id: user._id.toString()
+            }, JWT_SECRET)
+
+            res.json({
+                token
+            })
+        
+        } else {
+            res.status(401).json({
+                message: "Incorrect Credentials."
+            })
+        
+    }} catch (error) {
+        
     }
 })
 
