@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const {UserModel, TodoModel} = require('./db/schemas')
 const auth = require('./middlewares/auth')
 const bcrypt = require('bcrypt');
+const { z } = require('zod');
 
 mongoose.connect("mongodb+srv://tryashwinm:sUNSOXRD7alPMVWz@cluster0.0uhqa.mongodb.net/todos-db")
 
@@ -14,6 +15,21 @@ app.use(express.json())
 const JWT_SECRET = "s3cret";
 
 app.post('/signup', async (req, res)=>{
+
+    let requiredBody = z.object({
+        email: z.string().min(3).max(100).email(),
+        password: z.string().min(3).max(100),
+        name: z.string().min(3).max(50)
+    })
+
+    let userPassedData = requiredBody.safeParse(req.body);
+
+    if(!userPassedData.success){
+        res.json({
+            error: userPassedData.error
+        })
+    }
+
     let email = req.body.email;
     let password = req.body.password;
     let name = req.body.name;
