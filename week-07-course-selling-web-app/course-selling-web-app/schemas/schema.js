@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 let Schema = mongoose.Schema;
-let objectId = schema.ObjectId;
+let objectId = Schema.ObjectId;
 
 let User = new Schema({
     name: String,
