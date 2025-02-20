@@ -2,8 +2,11 @@ const express = require('express');
 const { UserModel } = require('../schemas/schema')
 const bcrypt = require('bcrypt');
 const { z } = require('zod');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv').config()
 
 const router = express.Router()
+const jwt_secret = process.env.JWT_SECRET
 
 router.post('/signup', async (req, res) => {
 
@@ -43,7 +46,38 @@ router.post('/signup', async (req, res) => {
     
 
 })
-router.post('/signin', (req, res) => {})
+
+
+router.post('/signin', async (req, res) => {
+    let email = req.body.email;
+    let password = req.body.password;
+
+    let foundUser = await UserModel.findOne({email: email});
+
+    if (!foundUser){
+        return res.status(404).json({
+            message: 'Email and password didn"t match.'
+        })
+    }
+
+    const match = await bcrypt.compare(password, foundUser.password);
+
+    if (!match){
+        return res.status(404).json({
+            message: 'Email and password didn"t match.'
+        })
+    }
+
+    let token = jwt.sign({
+        id: foundUser._id
+    }, jwt_secret)
+
+    res.status(200).json({
+        token 
+    })
+
+
+})
 router.get('/courses', (req, res) => {})
 
 
