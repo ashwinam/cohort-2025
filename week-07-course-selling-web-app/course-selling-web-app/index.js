@@ -6,9 +6,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv').config()
 const { z } = require('zod');
 
- 
 const app = express();
-
 
 app.use(express.json())
 app.use('/api/v1/user', userRouter)
