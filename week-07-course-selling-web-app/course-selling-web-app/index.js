@@ -7,13 +7,16 @@ const dotenv = require('dotenv').config()
 
 const app = express();
 
-mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
 
-
+app.use(express.json())
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/course', courseRouter)
-app.use('/api/v1/creator', courseRouter)
+app.use('/api/v1/creator', creatorRouter)
 
+let  main = async ()=>{
+    await mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
+    app.listen(3000);
+    console.log('Listening to 3000.');
+}
 
-
-app.listen(3000);
+main();

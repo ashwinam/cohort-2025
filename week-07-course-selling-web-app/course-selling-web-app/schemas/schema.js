@@ -4,8 +4,7 @@ let Schema = mongoose.Schema;
 let objectId = Schema.ObjectId;
 
 let User = new Schema({
-    name: String,
-    email: String,
+    email: {type: String, unique: true},
     password: String,
     firstName: String,
     lastName: String
@@ -13,8 +12,7 @@ let User = new Schema({
 
 
 let Creator = new Schema({
-    name: String,
-    email: String,
+    email: {type: String, unique: true},
     password: String,
     firstName: String,
     lastName: String
