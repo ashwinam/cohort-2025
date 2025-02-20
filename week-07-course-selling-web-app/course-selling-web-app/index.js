@@ -4,7 +4,9 @@ const courseRouter = require('./router/course');
 const creatorRouter = require('./router/creator');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config()
+const { z } = require('zod');
 
+ 
 const app = express();
 
 
