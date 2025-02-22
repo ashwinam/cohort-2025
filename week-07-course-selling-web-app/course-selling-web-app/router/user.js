@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv').config()
 
 const router = express.Router()
-const jwt_secret = process.env.JWT_SECRET
+const user_jwt_secret = process.env.USER_JWT_SECRET
 
 router.post('/signup', async (req, res) => {
 
@@ -70,7 +70,7 @@ router.post('/signin', async (req, res) => {
 
     let token = jwt.sign({
         id: foundUser._id
-    }, jwt_secret)
+    }, user_jwt_secret);
 
     res.status(200).json({
         token 

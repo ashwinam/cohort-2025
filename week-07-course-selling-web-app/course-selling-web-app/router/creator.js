@@ -1,7 +1,10 @@
 const { Router } = require('express');
 const { z } = require('zod');
 const bcrypt = require('bcrypt');
-const { CreatorModel } = require('../schemas/schema')
+const { CreatorModel } = require('../schemas/schema');
+const dotenv = require('dotenv').config();
+
+const admin_jwt_secret = process.env.ADMIN_JWT_SECRET
 
 const creatorRouter = Router();
 
@@ -62,13 +65,16 @@ creatorRouter.post('/signin', async (req, res) => {
 
     let token = jwt.sign({
         id: foundUser._id
-    }, jwt_secret)
+    }, admin_jwt_secret);
 
     res.status(200).json({
         token 
     })
 });
-creatorRouter.post('/course', (req, res) => {});
+creatorRouter.post('/course', (req, res) => {
+
+    
+});
 creatorRouter.delete('/course', (req, res) => {});
 
 module.exports = creatorRouter;
