@@ -123,6 +123,20 @@ creatorRouter.put('/course', adminMiddleware, async (req, res) => {
 
 });
 
-creatorRouter.get('/course/bulk', (req, res) => {});
+creatorRouter.get('/course/bulk', adminMiddleware, async (req, res) => {
+    const creatorId = req.creatorId;
+
+    const courses = await CourseModel.find({creatorId: creatorId})
+
+    if (courses.length > 0){
+        res.status(200).json({
+            data: courses
+        })
+    } else {
+        res.status(404).json({
+            message: "No courses available"
+        })
+    }
+});
 
 module.exports = creatorRouter;
