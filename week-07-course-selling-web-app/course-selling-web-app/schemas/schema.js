@@ -21,6 +21,7 @@ let Creator = new Schema({
 let Course = new Schema({
     courseName: String,
     courseDescription: String,
+    coursePrice: Number,
     creatorId: objectId
 })
 

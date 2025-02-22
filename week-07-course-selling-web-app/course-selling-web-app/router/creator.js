@@ -3,6 +3,9 @@ const { z } = require('zod');
 const bcrypt = require('bcrypt');
 const { CreatorModel } = require('../schemas/schema');
 const dotenv = require('dotenv').config();
+const { adminMiddleware } = require('../middlewares/admin');
+const { CourseModel } = require('../schemas/schema');
+const jwt = require('jsonwebtoken');
 
 const admin_jwt_secret = process.env.ADMIN_JWT_SECRET
 
@@ -71,8 +74,34 @@ creatorRouter.post('/signin', async (req, res) => {
         token 
     })
 });
-creatorRouter.post('/course', (req, res) => {
+creatorRouter.post('/course', adminMiddleware, async (req, res) => {
+    const requiredData = z.object({
+        courseName: z.string().min(5).max(100),
+        courseDescription: z.string().min(5).max(500),
+        coursePrice: z.number().min(1)
+    });
 
+    let userPassedData = requiredData.safeParse(req.body);
+
+    if(!userPassedData.success){
+        res.json({
+            error: userPassedData.error
+        })
+        return
+    }
+
+    let creatorId = req.creatorId;
+
+    let { courseName, courseDescription, coursePrice } = req.body;
+
+    let courseId = await CourseModel.create({
+        courseName, courseDescription, coursePrice, creatorId
+    });
+
+    res.json({
+        message: 'Course Created Successfully.',
+        courseId
+    })
     
 });
 creatorRouter.delete('/course', (req, res) => {});
