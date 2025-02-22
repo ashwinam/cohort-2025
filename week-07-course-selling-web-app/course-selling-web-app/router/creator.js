@@ -104,6 +104,25 @@ creatorRouter.post('/course', adminMiddleware, async (req, res) => {
     })
     
 });
-creatorRouter.delete('/course', (req, res) => {});
+creatorRouter.put('/course', adminMiddleware, async (req, res) => {
+    const { courseId, courseName, courseDescription, coursePrice } = req.body;
+
+    // Find the course
+    const course = await CourseModel.updateOne({_id: courseId, creatorId: req.creatorId}, {'$set': {courseName, courseDescription, coursePrice}});
+
+    if(course){
+        res.status(200).json({
+            message: 'course updated successfully.'
+        })
+    } else {
+        res.status(403).json({
+            message: "Course did not found"
+        })
+    }
+
+
+});
+
+creatorRouter.get('/course/bulk', (req, res) => {});
 
 module.exports = creatorRouter;
