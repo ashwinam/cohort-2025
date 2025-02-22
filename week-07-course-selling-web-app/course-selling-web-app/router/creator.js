@@ -70,6 +70,5 @@ creatorRouter.post('/signin', async (req, res) => {
 });
 creatorRouter.post('/course', (req, res) => {});
 creatorRouter.delete('/course', (req, res) => {});
-creatorRouter.post('/course/:id/content', (req, res) => {});
 
 module.exports = creatorRouter;
