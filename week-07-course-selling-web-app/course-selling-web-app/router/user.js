@@ -1,8 +1,9 @@
 const express = require('express');
-const { UserModel } = require('../schemas/schema')
+const { UserModel, PurchaseModel } = require('../schemas/schema')
 const bcrypt = require('bcrypt');
 const { z } = require('zod');
 const jwt = require('jsonwebtoken');
+const { userMiddleware } = require('../middlewares/user');
 const dotenv = require('dotenv').config()
 
 const router = express.Router()
@@ -78,7 +79,13 @@ router.post('/signin', async (req, res) => {
 
 
 })
-router.get('/courses', (req, res) => {})
+router.get('/courses', userMiddleware, async (req, res) => {
+    const courses = await PurchaseModel.find({userId: req.userId});
+
+    res.json({
+        courses
+    })
+})
 
 
 module.exports = router;
