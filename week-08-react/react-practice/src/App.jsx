@@ -1,26 +1,21 @@
 function App(){
+
+  const items = [
+    {
+      id: 1, item: "Item 1"
+    },
+    {
+      id: 2, item: "Item 2"
+    },
+    {
+      id: 3, item: "Item 3"
+    }
+  ]
   return (
-    <div style={{display: "flex", flexDirection: "column", rowGap: 10}}>
-      <Card>
-        <h2>This a One Card</h2>
-
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur corrupti ut praesentium odio labore beatae obcaecati porro suscipit rem aliquam distinctio sequi inventore error accusamus minima, magnam sit laudantium officiis!</p>
-      </Card>
-
-      <Card>
-      <h2>This a Second Card</h2>
-
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur corrupti ut praesentium odio labore beatae obcaecati porro suscipit rem aliquam distinctio sequi inventore error accusamus minima, magnam sit laudantium officiis!</p>
-
-      </Card>
-      </div>
+    <ul>
+      {items.map(x => <li key={x.id}>{x.item}</li>)}
+    </ul>
   )
 }
 
-function Card({children}){
-  return <div style={{padding: 30, borderRadius: 20, border: "1px solid black"}}>
-    {children}
-  </div>
-}
-
-export default App;
+export default App
