@@ -1,69 +1,26 @@
-import { useEffect, useState } from "react"
-
-
-function App() {
-
-
+function App(){
   return (
-    <div>
-    {/* <div><Notification /></div> */}
+    <div style={{display: "flex", flexDirection: "column", rowGap: 10}}>
+      <Card>
+        <h2>This a One Card</h2>
 
-    <Counter  />
-    
-    </div>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur corrupti ut praesentium odio labore beatae obcaecati porro suscipit rem aliquam distinctio sequi inventore error accusamus minima, magnam sit laudantium officiis!</p>
+      </Card>
+
+      <Card>
+      <h2>This a Second Card</h2>
+
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur corrupti ut praesentium odio labore beatae obcaecati porro suscipit rem aliquam distinctio sequi inventore error accusamus minima, magnam sit laudantium officiis!</p>
+
+      </Card>
+      </div>
   )
 }
 
-// function Notification(){
-// const [notification, setNotification] = useState(true);
-
-//   function toggleMessage(){
-//     setNotification(!notification);
-//   }
-
-//   return(
-//   <div>
-//     <button onClick={toggleMessage}>Toggle Message</button>
-//   {notification ? <p>message appeared</p>: null}
-//   </div>
-// )
-// }
-
-// Props
-
-function Counter(){
-  const [count, setCount] = useState(0)
-
-  function increaseCount(){
-    setCount(count + 1);
-  }
-
-  useEffect(
-    ()=>{
-      const interval = setInterval(increaseCount, 1000)
-    
-    // return () =>clearInterval(interval);
-  }
-  );
-  
-  
-  return <div>
-    <div>{count}</div>
+function Card({children}){
+  return <div style={{padding: 30, borderRadius: 20, border: "1px solid black"}}>
+    {children}
   </div>
 }
 
-const Timer = () => {
-  const [seconds, setSeconds] = useState(0);
-
-  useEffect(() => {
-      const interval = setInterval(() => {
-          setSeconds(prev => prev + 1);
-      }, 1000);
-
-      return () => clearInterval(interval); // Cleanup on unmount
-  }, []);
-
-  return <div>{seconds} seconds elapsed</div>;
-};
-
-export default App
+export default App;
