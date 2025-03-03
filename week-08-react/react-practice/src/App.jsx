@@ -1,6 +1,7 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router-dom";
 
 const App = () => {
+
   return (
     <>
       <BrowserRouter>
@@ -32,7 +33,13 @@ function Services() {
 }
 
 function Error() {
-  return <>Page Not Found</>;
+  const navigate = useNavigate();
+
+  
+  return <>
+  Page Not Found
+  <button onClick={() => navigate('/')}>Go back</button>
+  </>;
 }
 
 export default App;
