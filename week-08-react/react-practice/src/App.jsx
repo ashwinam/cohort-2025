@@ -1,21 +1,45 @@
-function App(){
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-  const items = [
-    {
-      id: 1, item: "Item 1"
-    },
-    {
-      id: 2, item: "Item 2"
-    },
-    {
-      id: 3, item: "Item 3"
-    }
-  ]
+const App = () => {
   return (
-    <ul>
-      {items.map(x => <li key={x.id}>{x.item}</li>)}
-    </ul>
+    <>
+    <BrowserRouter>
+        <Link to={'/'}>home</Link>
+        <Link to={'/about'}>about</Link>
+        <Link to={'/services'}>services</Link>
+        <br />
+      <Routes>
+        <Route index element={<Index />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/services' element={<Services />} />
+      </Routes>
+    </BrowserRouter>
+    </>
+  )
+};
+
+function Index() {
+  return(
+    <>
+      From Home Page
+    </>
   )
 }
 
-export default App
+function About() {
+  return(
+    <>
+      Its an about page
+    </>
+  )
+}
+
+function Services() {
+  return (
+    <>
+      This is a services
+    </>
+  )
+}
+
+export default App;
