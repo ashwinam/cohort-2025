@@ -1,19 +1,18 @@
-import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 
 const App = () => {
 
   return (
     <>
       <BrowserRouter>
-        <Link to={"/"}>home</Link>
-        <Link to={"/about"}>about</Link>
-        <Link to={"/services"}>services</Link>
+        
         <br />
         <Routes>
-          <Route index element={<Index />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="*" element={<Error />} />
+          <Route path="/" element={<Index />}>
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="*" element={<Error />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
@@ -21,7 +20,18 @@ const App = () => {
 };
 
 function Index() {
-  return <>From Home Page</>;
+  return <>
+  <Link to={"/"}>home</Link> | 
+  <Link to={"/about"}>about</Link> | 
+  <Link to={"/services"}>services</Link>
+
+  <br />
+
+  <Outlet />
+
+  <h2>Footer here</h2>
+  
+  </>;
 }
 
 function About() {
