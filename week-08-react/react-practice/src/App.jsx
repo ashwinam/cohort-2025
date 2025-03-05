@@ -1,18 +1,42 @@
-import { useRef } from "react"
+import { useState } from "react"
 
-export default function App(){
+function App(){
+  return (
+    <Light />
+  )
+}
 
-  const inputRef = useRef(null);
+function Light(){
+  const [bulbState, setBulbState] = useState(true);
 
-  function submitHandler(){
-    inputRef.current.focus()
-  }
   return (
     <>
-
-      <input ref={inputRef}  type="text" />
-      <input type="text" />
-      <button onClick={submitHandler}>Submit</button>
+    <LightBulb bulbState={bulbState} />
+    <LightSwitch setBulbState={setBulbState} />
     </>
   )
 }
+
+function LightBulb({bulbState}){
+
+  return (
+    <>
+      {bulbState ? 'bulbOn': 'bulbOff'}
+    </>
+  )
+}
+
+function LightSwitch({setBulbState}){
+
+  function toggleBulb(){
+    setBulbState(bulbState => !bulbState);
+  }
+
+  return (
+    <div>
+      <button onClick={toggleBulb}>ToggleBulb</button>
+    </div>
+  )
+}
+
+export default App
