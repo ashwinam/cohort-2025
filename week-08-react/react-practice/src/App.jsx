@@ -1,4 +1,7 @@
-import { useState } from "react"
+import { createContext, useContext, useState } from "react"
+// Context Going to be in global 
+
+const BulbContext = createContext();
 
 function App(){
   return (
@@ -11,22 +14,28 @@ function Light(){
 
   return (
     <>
-    <LightBulb bulbState={bulbState} />
-    <LightSwitch setBulbState={setBulbState} />
+    <BulbContext.Provider value={{bulbState, setBulbState}}>
+    <LightBulb />
+    <LightSwitch />
+    </ BulbContext.Provider>
     </>
   )
 }
 
-function LightBulb({bulbState}){
+function LightBulb(){
+
+  const {bulbState} = useContext(BulbContext);
 
   return (
     <>
       {bulbState ? 'bulbOn': 'bulbOff'}
+
     </>
   )
 }
 
-function LightSwitch({setBulbState}){
+function LightSwitch(){
+  const {setBulbState} = useContext(BulbContext);
 
   function toggleBulb(){
     setBulbState(bulbState => !bulbState);
