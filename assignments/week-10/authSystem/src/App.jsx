@@ -3,12 +3,16 @@ import './Auth.css';
 import AppBar from './components/AppBar';
 import Home from './components/Home';
 import Login from './components/Login';
+import { useState } from 'react';
 
 function App() {
+  const [username, setUsername] = useState('ashwin');
+
   return <>
-    <AppBar />
-    <Home />
-    <Login />
+    <AppBar username={username} setUsername={setUsername}/>
+    {username ? <Home />: <Login setUsername={setUsername} />}
+    
+    
   </>;
 }
 
