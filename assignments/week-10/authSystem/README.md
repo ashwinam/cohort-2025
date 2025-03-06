@@ -34,7 +34,7 @@ The goal is to update the AppBar with the user's username after successful login
     - `AuthContext.js`: Authentication context for the Context API approach
   - `App.js`: Main application component
   - `index.js`: Entry point of the application
-
+1212
 ## Implementation Approaches
 
 ### 1. State Lifting

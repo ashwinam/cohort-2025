@@ -1,8 +1,8 @@
-import React from 'react'
+import AppBar from './AppBar';
 
 const AuthSystem = () => {
   return (
-    <div>AuthSystem</div>
+    <div><AppBar /></div>
   )
 }
 
