@@ -1,17 +1,20 @@
-import AuthSystem from "./components/AuthSystem";
 import "./Auth.css";
 import AppBar from "./components/AppBar";
 import Home from "./components/Home";
 import Login from "./components/Login";
-import { useState } from "react";
+import { createContext, useState } from "react";
+
+export const UsernameContext = createContext();
 
 function App() {
   const [username, setUsername] = useState("ashwin");
 
   return (
     <>
-      <AppBar username={username} setUsername={setUsername} />
-      {username ? <Home /> : <Login setUsername={setUsername} />}
+    <UsernameContext.Provider value={{username, setUsername}} >
+      <AppBar  />
+      {username ? <Home /> : <Login />}
+    </ UsernameContext.Provider>
     </>
   );
 }

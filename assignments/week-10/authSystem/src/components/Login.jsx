@@ -1,6 +1,9 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import {UsernameContext} from '../App.jsx';
 
-const Login = ({ setUsername }) => {
+const Login = () => {
+  const {setUsername} = useContext(UsernameContext);
+
   const ref = useRef(null);
   return (
     <div

@@ -1,4 +1,8 @@
-const AppBar = ({ username, setUsername }) => {
+import { useContext } from "react";
+import {UsernameContext} from '../App.jsx';
+
+const AppBar = () => {
+  const {username, setUsername} = useContext(UsernameContext)
   return (
     <div
       style={{
