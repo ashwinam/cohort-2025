@@ -1,14 +1,32 @@
 import { useState } from 'react';
 import './App.css'
 
-function App() {
+// Create a custom-hook
+/*
+Custom hook function take a hook internally, it need to have use... in its name and return the required thing from function
+
+*/
+
+function useCounter(){
   const [count, setCount] = useState(0);
+
+  function countIncrease(){
+    setCount(count + 1);
+  }
+
+  return {count, countIncrease}
+
+}
+
+function App() {
+
+  const { count, countIncrease } = useCounter();
 
   return (
     <>
       {count}
       <br />
-      <button onClick={() => setCount(c => c + 1)}>Increase</button>
+      <button onClick={countIncrease}>Increase</button>
     </>
   )
 }
