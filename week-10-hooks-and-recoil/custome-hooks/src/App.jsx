@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 
 // Create a custom-hook
@@ -20,13 +20,22 @@ function useCounter(){
 
 function App() {
 
-  const { count, countIncrease } = useCounter();
+  const [currentData, setCurrentData] = useState([]);
+
+  const data = async () => {
+    let response = await fetch('https://jsonplaceholder.typicode.com/posts/2')
+    let json = await response.json()
+    setCurrentData(json);
+  }
+
+  useEffect(() => {
+    data()
+  }, [])
 
   return (
     <>
-      {count}
       <br />
-      <button onClick={countIncrease}>Increase</button>
+      <p>{ JSON.stringify(currentData) }</p>
     </>
   )
 }
