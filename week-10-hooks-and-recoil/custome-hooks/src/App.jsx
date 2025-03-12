@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
 // Create a custom-hook
@@ -40,18 +40,35 @@ function useFetch(postId) {
   return [currentData, loading];
 }
 
-function App() {
-  const [postId, setPostId] = useState(1);
+function usePrev(value) {
+  const ref = useRef();
 
-  const [posts, isLoading ] = useFetch(postId);
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
+
+  return ref.current;
+}
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  const prevValue = usePrev(count);
+
+  function increaseCount() {
+    setCount(c => c + 1);
+  }
+
+  function descreseCount() {
+    setCount(c => c - 1);
+  }
 
   return (
     <>
-      <button onClick={() => setPostId(1)}>1</button>
-      <button onClick={() => setPostId(2)}>2</button>
-      <button onClick={() => setPostId(3)}>3</button>
-      <br />
-      <p>{isLoading ? 'Loading ...' : JSON.stringify(posts)}</p>
+      <p>Count: {count}</p>
+      <p>Previous: {prevValue}</p>
+      <button onClick={increaseCount} style={{marginRight: 10}}>Increase</button>
+      <button onClick={descreseCount}>Decrease</button>
     </>
   );
 }
