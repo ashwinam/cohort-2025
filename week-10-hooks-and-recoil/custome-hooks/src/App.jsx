@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
 
 // Create a custom-hook
 /*
@@ -7,38 +7,50 @@ Custom hook function take a hook internally, it need to have use... in its name 
 
 */
 
-function useCounter(){
+function useCounter() {
   const [count, setCount] = useState(0);
 
-  function countIncrease(){
+  function countIncrease() {
     setCount(count + 1);
   }
 
-  return {count, countIncrease}
-
+  return { count, countIncrease };
 }
 
-function App() {
 
+
+function useFetch(postId) {
   const [currentData, setCurrentData] = useState([]);
 
   const data = async () => {
-    let response = await fetch('https://jsonplaceholder.typicode.com/posts/2')
-    let json = await response.json()
+    let response = await fetch(
+      "https://jsonplaceholder.typicode.com/posts/" + postId
+    );
+    let json = await response.json();
     setCurrentData(json);
-  }
+  };
 
   useEffect(() => {
-    data()
-  }, [])
+    data();
+  }, [postId]);
+
+  return currentData;
+}
+
+function App() {
+  const [postId, setPostId] = useState(1);
+
+  const posts = useFetch(postId);
 
   return (
     <>
+      <button onClick={() => setPostId(1)}>1</button>
+      <button onClick={() => setPostId(2)}>2</button>
+      <button onClick={() => setPostId(3)}>3</button>
       <br />
-      <p>{ JSON.stringify(currentData) }</p>
+      <p>{JSON.stringify(posts)}</p>
     </>
-  )
+  );
 }
 
-
-export default App
+export default App;
