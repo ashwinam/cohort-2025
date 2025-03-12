@@ -21,6 +21,7 @@ function useCounter() {
 
 function useFetch(postId) {
   const [currentData, setCurrentData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const data = async () => {
     let response = await fetch(
@@ -31,16 +32,18 @@ function useFetch(postId) {
   };
 
   useEffect(() => {
+    setLoading(true)
     data();
+    setLoading(false)
   }, [postId]);
 
-  return currentData;
+  return [currentData, loading];
 }
 
 function App() {
   const [postId, setPostId] = useState(1);
 
-  const posts = useFetch(postId);
+  const [posts, isLoading ] = useFetch(postId);
 
   return (
     <>
@@ -48,7 +51,7 @@ function App() {
       <button onClick={() => setPostId(2)}>2</button>
       <button onClick={() => setPostId(3)}>3</button>
       <br />
-      <p>{JSON.stringify(posts)}</p>
+      <p>{isLoading ? 'Loading ...' : JSON.stringify(posts)}</p>
     </>
   );
 }
