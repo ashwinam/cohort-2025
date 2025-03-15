@@ -1,8 +1,8 @@
 import { CounterAtom } from "./App";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 
 function IncreaseCount(){
-    const [_, setCount] = useAtom(CounterAtom);
+    const setCount = useSetAtom(CounterAtom);
   
     return (
       <>
@@ -19,7 +19,8 @@ function Count(){
   }
   
 function DecreaseCount(){
-    const [_,setCount] = useAtom(CounterAtom);
+    const setCount = useSetAtom(CounterAtom);
+
     return (
       <>
         <button onClick={() => setCount(c => c - 1)}>Decrease Count</button>
