@@ -6,7 +6,11 @@ function App() {
 
   return (
     <>
-      <h1 style={{textAlign: 'center', fontSize: 20, fontWeight: 900}}>Hello World!</h1>
+      <div className='flex justify-between'>
+        <div className='bg-red-400 w-100 text-white font-bold'>Hi There!</div>
+        <div className='bg-green-500 w-100 text-white font-bold'>Hi There!</div>
+        <div className='bg-yellow-700 w-100 text-white font-bold'>Hi There!</div>
+      </div>
     </>
   )
 }
