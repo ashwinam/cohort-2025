@@ -10,9 +10,11 @@ function App() {
 
   return (
     <>
+    <div className="bg-[#0c2c58] h-screen flex flex-col items-center justify-center">
     <myContext.Provider value={{dateInputRef, isDisabled, setDisability}}>
       <DateVerificationComponent />
       </myContext.Provider>
+      </div>
     </>
   );
 }

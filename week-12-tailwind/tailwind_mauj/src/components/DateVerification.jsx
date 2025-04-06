@@ -1,15 +1,12 @@
 import { useContext } from "react"
 import { myContext } from "../App"
+import Logo from "./Heading"
 
 export default function DateVerificationComponent (){
     const {setDisability, isDisabled, dateInputRef} = useContext(myContext)
     return(
-        <div className="bg-[#0c2c58] h-screen flex flex-col items-center">
-        <div className="flex mt-20">
-          <p className="mr-2">💕</p>
-          <h1 className="text-xl text-[#3fe3d1]">Webinar</h1>
-          <span className="text-white text-xl">.gg</span>
-        </div>
+        <>
+        <Logo />
         <div className="text-white text-2xl my-15">Verify Your Age</div>
         <div className="text-gray-400 text-sm">
           Please confirm your birth year. This data will not be stored.
@@ -35,6 +32,6 @@ export default function DateVerificationComponent (){
         >
           Continue
         </button>
-      </div>
+        </>
     )
 }
