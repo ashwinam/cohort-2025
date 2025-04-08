@@ -3,11 +3,11 @@ import { myContext } from "../App"
 import Logo from "./Heading"
 
 export default function DateVerificationComponent (){
-    const {setDisability, isDisabled, dateInputRef} = useContext(myContext)
+    const {setDisability, isDisabled, dateInputRef, setCurrentState} = useContext(myContext)
     return(
         <>
         <Logo />
-        <div className="text-white text-2xl my-15">Verify Your Age</div>
+        <div className="text-white text-2xl my-10">Verify Your Age</div>
         <div className="text-gray-400 text-sm">
           Please confirm your birth year. This data will not be stored.
         </div>
@@ -21,6 +21,7 @@ export default function DateVerificationComponent (){
         />
 
         <button
+        onClick={() => setCurrentState('emailVerification')}
           disabled={isDisabled}
           className={`mt-7 w-70 py-2 rounded-md ${
             dateInputRef.current?.value
