@@ -2,34 +2,35 @@ import { useContext } from "react";
 import { myContext } from "../App";
 import Logo from "./Heading";
 
-export default function EmailComponent() {
-  const { setDisability, isDisabled, emailInputRef, setCurrentState } =
+export default function DateVerificationComponent() {
+  const { setDisability, isDisabled, dateInputRef, setCurrentState } =
     useContext(myContext);
   return (
     <>
       <Logo />
-      <div className="text-white text-2xl my-10 font-bold">
-        Let's Get Started
+      <div className="text-white text-2xl my-10">Verify Your Age</div>
+      <div className="text-gray-400 text-sm">
+        Please confirm your birth year. This data will not be stored.
       </div>
 
       <input
-        ref={emailInputRef}
+        ref={dateInputRef}
         className="bg-[#18406b] placeholder:text-gray-500 placeholder:text-xs px-3 py-2 mt-5 rounded-md w-70 text-gray-300"
-        type="email"
-        placeholder="Email ..."
+        type="date"
+        placeholder="Your Birth Year"
         onChange={() => setDisability(false)}
       />
 
       <button
         onClick={() => {
-          setCurrentState("otpVerification");
+          setCurrentState("emailVerification");
           setDisability(true);
         }}
         disabled={isDisabled}
         className={`mt-7 w-70 py-2 rounded-md ${
-          emailInputRef.current?.value ? "cursor-pointer" : "cursor-not-allowed"
+          dateInputRef.current?.value ? "cursor-pointer" : "cursor-not-allowed"
         } ${
-          emailInputRef.current?.value ? "bg-green-400" : "bg-gray-400"
+          dateInputRef.current?.value ? "bg-green-400" : "bg-gray-400"
         } text-sm text-white`}
       >
         Continue

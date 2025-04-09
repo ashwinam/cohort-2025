@@ -1,7 +1,8 @@
 import { useRef, useState, createContext } from "react";
 import "./App.css";
-import DateVerificationComponent from "./components/DateVerification";
-import EmailComponent from "./components/EmailComponent"
+import DateVerificationComponent from "./components/DateVerificationComponent";
+import EmailComponent from "./components/EmailComponent";
+import OtpVerification from "./components/OTPVerificationComponent";
 
 export const myContext = createContext(null);
 
@@ -14,9 +15,18 @@ function App() {
   return (
     <>
       <div className="bg-[#0c2c58] h-screen flex flex-col items-center justify-center">
-        <myContext.Provider value={{ dateInputRef, isDisabled, setDisability, setCurrentState, emailInputRef }}>
+        <myContext.Provider
+          value={{
+            dateInputRef,
+            isDisabled,
+            setDisability,
+            setCurrentState,
+            emailInputRef,
+          }}
+        >
           {currentState === "ageVerification" && <DateVerificationComponent />}
-          {currentState === 'emailVerification' && <EmailComponent />}
+          {currentState === "emailVerification" && <EmailComponent />}
+          {currentState === "otpVerification" && <OtpVerification />}
         </myContext.Provider>
       </div>
     </>
