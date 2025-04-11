@@ -3,6 +3,7 @@ import "./App.css";
 import DateVerificationComponent from "./components/DateVerificationComponent";
 import EmailComponent from "./components/EmailComponent";
 import OtpVerification from "./components/OTPVerificationComponent";
+import FinalPage from "./components/FinalPage";
 
 export const myContext = createContext(null);
 
@@ -27,6 +28,7 @@ function App() {
           {currentState === "ageVerification" && <DateVerificationComponent />}
           {currentState === "emailVerification" && <EmailComponent />}
           {currentState === "otpVerification" && <OtpVerification />}
+          {currentState === 'finalPage' && <FinalPage />}
         </myContext.Provider>
       </div>
     </>
